@@ -12,6 +12,7 @@ Pointers only — do not duplicate long docs here. Open the linked file; do not 
 | Repo layout | `docs/REPO_LAYOUT.md` | Directory tree and conventions |
 | Dev / how to run | `docs/DEV.md` | `uv sync` to install; `uv run pytest` to test |
 | Standing product decisions | `docs/DECISIONS.md` | ADR-lite log — D-001 … D-007 (locked choices; open a PR to change) |
+| Public-service & capital handoff | `docs/PUBLIC_SERVICE_AND_CAPITAL.md` | Problem overview, what exists, ~$100K exploration path, kill criteria, how to contribute or fork |
 | Security policy | `SECURITY.md` | Vulnerability reporting, branch-protection notes |
 
 ## Living notes

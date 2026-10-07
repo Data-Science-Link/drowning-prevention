@@ -1,9 +1,11 @@
 # Guardian Goggles
 
-**Parent-facing drowning-prevention wearable + phone app.**  
-A rechargeable BLE sensor clips onto a child's swim goggles. The parent's phone alerts when signal is lost *during an active Pool Session* — a low-cost, honest layer of protection for backyard and residential pools.
+**Parent-facing wearable + phone app — an honest, session-aware backup signal for residential pools.**  
+A rechargeable BLE sensor clips onto a child's swim goggles. The parent's phone alerts when signal is lost *during an active Pool Session* — a low-cost, transparent layer of protection for backyard pools.
 
-> **Current stage:** docs + CI foundation. App code and wireframe land in the next PR.
+> **Current stage:** docs + CI foundation complete. Stage 0 wireframe next (#10). See [`notes/STATUS.md`](notes/STATUS.md).
+
+**This is a public-service open-handoff project.** The software architecture, research, and UX model are open. If you can build the hardware and ship this, please do — see [`docs/PUBLIC_SERVICE_AND_CAPITAL.md`](docs/PUBLIC_SERVICE_AND_CAPITAL.md) for the full handoff overview and a ~$100K exploration path.
 
 The default branch `main` is covered by the Main Branch Protections ruleset. That ruleset blocks deletion and force-pushes, requires a pull request (one approval, code owner review, last-push approval, and resolved conversations), and requires the `security-audit` status check. Repository admins can bypass those rules.
 
@@ -101,5 +103,10 @@ Full design docs live in [`docs/`](docs/):
 - [Purpose & problem](docs/PURPOSE.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Repository layout](docs/REPO_LAYOUT.md)
-- [Standing decisions](docs/DECISIONS.md)
+- [Standing decisions](docs/DECISIONS.md) — D-001…D-007 (locked choices; open a PR to change)
 - [Dev setup](docs/DEV.md)
+- [Public service & capital handoff](docs/PUBLIC_SERVICE_AND_CAPITAL.md) — problem overview, what exists, ~$100K exploration path, kill criteria, how to contribute or fork
+
+Living notes: [`notes/STATUS.md`](notes/STATUS.md) · [`notes/OPEN_QUESTIONS.md`](notes/OPEN_QUESTIONS.md)
+
+Open issues: [#9 public-service framing](https://github.com/Data-Science-Link/drowning-prevention/issues/9) · [#10 wireframe](https://github.com/Data-Science-Link/drowning-prevention/issues/10) · [#14 HW PoC](https://github.com/Data-Science-Link/drowning-prevention/issues/14)
