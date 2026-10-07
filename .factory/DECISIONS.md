@@ -85,3 +85,9 @@ Append-only. Newest at the bottom.
 - **Why:** Comment-only shots are easy for humans to miss when auditing adherence from the PR body.
 - **Alternatives:** Allow either body or comment; require attached image files only.
 - **Revisit when:** GitHub UX makes comment evidence as visible as the description.
+
+### 2026-10-07 — Chat product-gate approval must update the PR description
+- **Decision:** When a human product gate (or similar review) is given in chat or another channel, the factory worker must **edit the PR description** before merging: check **Factory loop step 7 (Product gate)**, set **Human reviewed before merge: yes** (and who), and any other matching review fields. Chat approval alone is not enough — the PR body is the durable audit trail.
+- **Why:** Workers were merging after chat "Approved" without reflecting that on the PR; humans auditing the PR later could not see that a product gate happened.
+- **Alternatives:** Rely on chat history only; require a GitHub review click instead of chat.
+- **Revisit when:** Branch protection requires an approving GitHub review for all normal/high PRs.
