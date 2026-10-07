@@ -1,0 +1,14 @@
+{
+  "householdId": "hh_free_demo_01",
+  "tier": "free",
+  "maxChildren": 1,
+  "familySharingEnabled": false,
+  "richHistoryEnabled": false,
+  "aspNote": {
+    "launchKitUsd": "150-250",
+    "subscriptionUsdMo": 2.99,
+    "subscriptionCovers": ["multiChild", "familySharing", "richHistory"],
+    "coreAlertsPaywalled": false
+  },
+  "parentDisplayName": "Alex (demo parent)"
+}

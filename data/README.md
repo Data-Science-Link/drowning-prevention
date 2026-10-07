@@ -4,15 +4,25 @@ Fixtures, simulated datasets, and data schemas for Guardian Goggles.
 
 ## Status
 
-Fixture files land with the backend mock PR (PR #2). This folder is scaffolded here to reserve the path.
+Fixture files are live. Five scenarios cover the full alert UX (see `product/wireframe-acceptance.md`).  
+The wireframe loads these via `fetch()` when no mock is running.
 
-## Structure (planned)
+## Structure
 
 ```
 data/
-├── fixtures/       ← Static JSON fixtures served by the mock API
-│   └── scenario-contract.v0.json   ← Alert state scenarios (Lost Connection, SubmersionSuspect)
-└── schemas/        ← JSON Schema or Pydantic models for data contracts
+├── fixtures/                   ← Static JSON fixtures (contractVersion 0.2.1)
+│   ├── index.json              ← Scenario index
+│   ├── scenario-contract.v0.json
+│   ├── household_free.json     ← Household entitlement (free tier)
+│   ├── household_sub.json      ← Household entitlement (sub tier)
+│   └── scenarios/
+│       ├── happy_path.json
+│       ├── ble_blip_lt_10s.json
+│       ├── submersion_gt_10s.json
+│       ├── walkaway_lost.json
+│       └── multi_child_one_alert.json
+└── schemas/        ← JSON Schema or Pydantic models (planned)
 ```
 
 ## Fixture contract

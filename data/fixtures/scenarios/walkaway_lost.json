@@ -1,0 +1,110 @@
+{
+  "scenarioId": "walkaway_lost",
+  "title": "Walk-away / range drop \u2014 Lost Connection",
+  "entitlement": {
+    "tier": "free",
+    "maxChildren": 1,
+    "familySharingEnabled": false,
+    "richHistoryEnabled": false
+  },
+  "householdRef": "household_free.json",
+  "expectedAlertType": "LostConnection",
+  "summary": "Parent walks out of range or battery/interference style drop. Distinct Lost Connection chrome \u2014 NEVER shared with SubmersionSuspect. No drowning language.",
+  "children": [
+    {
+      "childId": "ch_7a2f9c01",
+      "displayName": "Sam Rivera",
+      "sensorId": "sns_ble_1104",
+      "batteryPct": 41,
+      "lastSeenAt": "2026-09-21T17:05:00-05:00",
+      "connectionState": "lost_connection",
+      "sessionActive": true,
+      "deviceHealth": {
+        "batteryPct": 41,
+        "worn": true,
+        "signal": "weak_or_lost",
+        "charging": false,
+        "note": "range_or_battery_pattern"
+      }
+    }
+  ],
+  "alerts": [
+    {
+      "alertId": "al_lost_3c88",
+      "childId": "ch_7a2f9c01",
+      "type": "LostConnection",
+      "openedAt": "2026-09-21T17:05:20-05:00",
+      "resolvedAt": null,
+      "ackBy": null,
+      "scenarioId": "walkaway_lost",
+      "headline": "Lost connection \u2014 monitoring interrupted",
+      "body": "We can't reach the wearable sensor. Monitoring is paused until the signal returns. Check distance, battery, and that the sensor is worn \u2014 this is not a submersion alert.",
+      "checklist": [
+        "Move closer to the pool area",
+        "Check wearable sensor battery",
+        "Confirm the sensor is securely attached",
+        "Watch for interference (walls, thick doors)"
+      ]
+    }
+  ],
+  "history": [
+    {
+      "entryId": "hx_lost_01",
+      "at": "2026-09-21T17:00:00-05:00",
+      "kind": "session",
+      "label": "Pool Session started",
+      "childId": "ch_7a2f9c01"
+    },
+    {
+      "entryId": "hx_lost_02",
+      "at": "2026-09-21T17:05:20-05:00",
+      "kind": "alert",
+      "label": "Lost Connection opened",
+      "childId": "ch_7a2f9c01",
+      "alertType": "LostConnection"
+    }
+  ],
+  "timeline": [
+    {
+      "t": 0,
+      "kind": "session_start",
+      "childId": "ch_7a2f9c01",
+      "connectionState": "monitoring"
+    },
+    {
+      "t": 100,
+      "kind": "battery_tick",
+      "childId": "ch_7a2f9c01",
+      "note": "batteryPct=41"
+    },
+    {
+      "t": 180,
+      "kind": "state_change",
+      "childId": "ch_7a2f9c01",
+      "connectionState": "lost_connection",
+      "note": "Range drop / walk-away pattern"
+    },
+    {
+      "t": 185,
+      "kind": "alert_open",
+      "childId": "ch_7a2f9c01",
+      "connectionState": "lost_connection",
+      "note": "LostConnection \u2014 distinct from SubmersionSuspect"
+    },
+    {
+      "t": 220,
+      "kind": "alert_ack",
+      "childId": "ch_7a2f9c01",
+      "note": "Parent dismissed after checklist"
+    }
+  ],
+  "initialScreen": "alert_lost",
+  "demoFocus": {
+    "showAlert": true,
+    "alertType": "LostConnection",
+    "sessionActive": true,
+    "connectionState": "lost_connection"
+  },
+  "demoDate": "2026-09-21",
+  "formFactorNote": "wearable_ble_sensor_hold"
+}

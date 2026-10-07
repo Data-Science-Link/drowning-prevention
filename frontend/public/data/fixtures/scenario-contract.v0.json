@@ -1,0 +1,120 @@
+{
+  "version": "0.2.1",
+  "status": "timelines_ready",
+  "updatedAt": "2026-09-21T20:40:00-05:00",
+  "productLocks": {
+    "scenarioIdsCanonical": true,
+    "wireframeThreshold": "scenario_hardcoded",
+    "freeHistory": "today_only",
+    "paidUnlocks": [
+      "richHistory",
+      "multiChild",
+      "familySharing"
+    ],
+    "alertChromeSplit": "SubmersionSuspect_vs_LostConnection_never_shared",
+    "wireframeStack": "expo_rn_unless_cos_override",
+    "privacy": "synthetic_kids_opaque_childIds_only",
+    "formFactor": "wearable_sensor_hold",
+    "aspNote": "launch_kit_150_250_sub_2_99_extras_only"
+  },
+  "connectionStates": [
+    "connected",
+    "monitoring",
+    "submersion_suspect",
+    "lost_connection",
+    "offline"
+  ],
+  "alertTypes": [
+    "SubmersionSuspect",
+    "LostConnection"
+  ],
+  "tiers": [
+    "free",
+    "sub"
+  ],
+  "childProfileFields": [
+    "childId",
+    "displayName",
+    "sensorId",
+    "batteryPct",
+    "lastSeenAt",
+    "connectionState",
+    "sessionActive",
+    "deviceHealth"
+  ],
+  "alertEventFields": [
+    "alertId",
+    "childId",
+    "type",
+    "openedAt",
+    "resolvedAt",
+    "ackBy",
+    "scenarioId"
+  ],
+  "entitlementFields": [
+    "tier",
+    "maxChildren",
+    "familySharingEnabled",
+    "richHistoryEnabled"
+  ],
+  "historyPolicy": {
+    "free": "today_only",
+    "sub": "richHistory"
+  },
+  "timelineEventFields": [
+    "t",
+    "kind",
+    "childId",
+    "connectionState",
+    "note"
+  ],
+  "scenarios": [
+    {
+      "scenarioId": "happy_path",
+      "file": "scenarios/happy_path.json",
+      "expectedAlertType": null,
+      "entitlement": "free",
+      "notes": "pair \u2192 monitor \u2192 end session"
+    },
+    {
+      "scenarioId": "ble_blip_lt_10s",
+      "file": "scenarios/ble_blip_lt_10s.json",
+      "expectedAlertType": null,
+      "entitlement": "free",
+      "notes": "drop <10s then restore; stay Monitoring"
+    },
+    {
+      "scenarioId": "submersion_gt_10s",
+      "file": "scenarios/submersion_gt_10s.json",
+      "expectedAlertType": "SubmersionSuspect",
+      "entitlement": "free",
+      "notes": "drop >10s \u2192 loud alert \u2192 ack"
+    },
+    {
+      "scenarioId": "walkaway_lost",
+      "file": "scenarios/walkaway_lost.json",
+      "expectedAlertType": "LostConnection",
+      "entitlement": "free",
+      "notes": "range/battery-style drop; no drowning copy"
+    },
+    {
+      "scenarioId": "multi_child_one_alert",
+      "file": "scenarios/multi_child_one_alert.json",
+      "expectedAlertType": "SubmersionSuspect",
+      "alertChildKey": "B",
+      "entitlement": "sub",
+      "notes": "two kids; only child B alerts"
+    }
+  ],
+  "households": {
+    "free": "household_free.json",
+    "sub": "household_sub.json"
+  },
+  "deviceHealthFields": [
+    "batteryPct",
+    "worn",
+    "signal",
+    "charging",
+    "note"
+  ]
+}

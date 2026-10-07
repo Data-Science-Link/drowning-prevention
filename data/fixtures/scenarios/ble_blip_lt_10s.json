@@ -1,0 +1,84 @@
+{
+  "scenarioId": "ble_blip_lt_10s",
+  "title": "Brief BLE blip (<10s) \u2014 stay Monitoring",
+  "entitlement": {
+    "tier": "free",
+    "maxChildren": 1,
+    "familySharingEnabled": false,
+    "richHistoryEnabled": false
+  },
+  "householdRef": "household_free.json",
+  "expectedAlertType": null,
+  "summary": "Signal drops briefly under 10s then restores. App stays in Monitoring; no SubmersionSuspect, no Lost Connection.",
+  "children": [
+    {
+      "childId": "ch_7a2f9c01",
+      "displayName": "Sam Rivera",
+      "sensorId": "sns_ble_1104",
+      "batteryPct": 82,
+      "lastSeenAt": "2026-09-21T16:45:08-05:00",
+      "connectionState": "monitoring",
+      "sessionActive": true,
+      "deviceHealth": {
+        "batteryPct": 82,
+        "worn": true,
+        "signal": "good",
+        "charging": false,
+        "note": "transient_gap_recovered"
+      }
+    }
+  ],
+  "alerts": [],
+  "history": [
+    {
+      "entryId": "hx_blip_01",
+      "at": "2026-09-21T16:44:00-05:00",
+      "kind": "session",
+      "label": "Pool Session started",
+      "childId": "ch_7a2f9c01"
+    },
+    {
+      "entryId": "hx_blip_02",
+      "at": "2026-09-21T16:45:05-05:00",
+      "kind": "signal",
+      "label": "Brief signal gap (~6s) \u2014 auto-recovered",
+      "childId": "ch_7a2f9c01"
+    }
+  ],
+  "timeline": [
+    {
+      "t": 0,
+      "kind": "session_start",
+      "childId": "ch_7a2f9c01",
+      "connectionState": "monitoring"
+    },
+    {
+      "t": 40,
+      "kind": "blip_start",
+      "childId": "ch_7a2f9c01",
+      "connectionState": "monitoring",
+      "note": "Transient drop; threshold not met"
+    },
+    {
+      "t": 46,
+      "kind": "blip_end",
+      "childId": "ch_7a2f9c01",
+      "connectionState": "monitoring",
+      "note": "Signal restored at 6s \u2014 no alert"
+    },
+    {
+      "t": 120,
+      "kind": "note",
+      "note": "Still Monitoring; parent sees calm home"
+    }
+  ],
+  "initialScreen": "home",
+  "demoFocus": {
+    "showAlert": false,
+    "sessionActive": true,
+    "connectionState": "monitoring",
+    "blipBanner": "Brief signal gap recovered \u2014 still monitoring"
+  },
+  "demoDate": "2026-09-21",
+  "formFactorNote": "wearable_ble_sensor_hold"
+}
