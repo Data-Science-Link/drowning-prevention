@@ -87,6 +87,23 @@ Requires pilot economics. Factory COGS quotes, IP67 certify if enclosure decided
 
 ---
 
+## Strategy, science, and finance context
+
+The stage ladder above is grounded in distilled research packs. Key entry points:
+
+| Topic | Path |
+|-------|------|
+| Strategy overview + public-service framing | `docs/STRATEGY.md` |
+| Competitor landscape | `strategy/market-landscape.md` |
+| Kill/continue gates (founder gate) | `strategy/kill-vs-continue-checklist.md` |
+| Invent-around checklist (WAVE US11715361) | `strategy/invent-around-checklist.md` |
+| Unit economics | `strategy/unit-economics.md` |
+| BLE physics brief | `science/01-ble-submersion-signal-brief.md` |
+| **Lean PoC BOM + backyard protocol** | `science/04-lean-poc-bom.md` |
+| **Lean capital plan** | `finance/lean-phase-capital.md` |
+
+---
+
 ## GitHub Pages static hosting
 
 The `frontend/public/` directory is the Pages source. CI workflow (`.github/workflows/pages.yml`) builds and deploys on every push to `main`.
