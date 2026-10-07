@@ -1,12 +1,18 @@
 name: CI
 
-# Companion checks for HTML/JS product work. Not required by the ruleset yet;
-# promote to required once the Guardian Goggles tree is on main and stable.
+# Check name: frontend-smoke.
+# Meant to be required on the Main Branch Protections ruleset next to
+# security-audit. Do not add path filters. A skipped required check stays
+# "Waiting for status" forever, including on docs-only PRs.
+#
+# push is unfiltered so a feature-branch push still reports the check when the
+# pull_request webhook is dropped (draft / bot-opened PRs). Keep workflow_dispatch
+# so a missing run can be started from the Actions tab without a new commit.
 on:
   push:
-    branches: [main, master, develop]
   pull_request:
-    branches: [main, master, develop]
+    branches: [ main, master, develop ]
+    types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
 
 permissions:
@@ -18,6 +24,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: HTML wireframe present (when migrated)
         run: |
