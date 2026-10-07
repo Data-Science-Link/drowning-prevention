@@ -1,6 +1,6 @@
 # science/
 
-BLE physics, power/battery BOM, alternative sensors, and hardware PoC research for Guardian Goggles.
+BLE physics, power/battery BOM, alternative sensors, and hardware PoC research for the drowning-prevention parent app.
 
 ## Contents (to be migrated selectively)
 

@@ -1,4 +1,4 @@
-# Guardian Goggles — Strategy Overview
+# Strategy Overview
 
 **Status:** Research phase (Stage 0–1). Docs in this folder are distilled research, not a product launch plan.
 **Public-service framing:** This material is published openly so that any builder — with a few hundred dollars of hardware and founder time — can validate the physics and pursue the opportunity.
@@ -136,4 +136,4 @@ Full checklist: `strategy/kill-vs-continue-checklist.md`.
 
 ---
 
-*Distilled from guardian-goggles workspace packs, Oct 2026. Research labels (RESEARCHED / ASSUMPTION) are carried through from source docs. Not legal advice, medical advice, or a safety certification.*
+*Distilled from workspace research packs, Oct 2026. Research labels (RESEARCHED / ASSUMPTION) are carried through from source docs. Not legal advice, medical advice, or a safety certification.*

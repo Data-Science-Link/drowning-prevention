@@ -31,8 +31,8 @@ jobs:
         run: |
           test -f frontend/public/index.html || \
             (echo "frontend/public/index.html missing" && exit 1)
-          grep -q "Guardian Goggles" frontend/public/index.html || \
-            (echo "index.html does not mention Guardian Goggles" && exit 1)
+          grep -q "Pool Safety Monitor" frontend/public/index.html || \
+            (echo "index.html does not mention Pool Safety Monitor" && exit 1)
           echo "Pages placeholder: OK"
 
       - name: HTML wireframe present (when migrated)

@@ -1,4 +1,4 @@
-# Guardian Goggles — Parent App Wireframe (HTML)
+# Parent App Wireframe (HTML)
 
 **Path:** `frontend/wireframe/` (source) · `frontend/public/` (Pages deployment)  
 **Stack:** Vanilla HTML/CSS/JS — no build step. First viewable cut for PM acceptance.  

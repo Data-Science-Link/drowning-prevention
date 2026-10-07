@@ -26,7 +26,7 @@ ADR-lite log of locked choices. Entries are stable. To change one, open a PR wit
 
 **Status:** Locked — HIGH FTO flag  
 **Decision:** Default to inventing around WAVE's patent US11715361. Do not buy abandoned or expired iSwimband/ASC patents.  
-**Rationale:** WAVE's claims cover multi-device RF-based submersion detection in venue contexts. Counsel has not yet claim-charted whether Guardian Goggles' fusion approach reads on those claims. Until that chart is done, we design away from WAVE's described methods (venue multi-transmitter, threshold-only RF). Buying expired iSwimband IP adds no freedom-to-operate and wastes capital.  
+**Rationale:** WAVE's claims cover multi-device RF-based submersion detection in venue contexts. Counsel has not yet claim-charted whether this project's fusion approach reads on those claims. Until that chart is done, we design away from WAVE's described methods (venue multi-transmitter, threshold-only RF). Buying expired iSwimband IP adds no freedom-to-operate and wastes capital.  
 **Next step:** Commission a freedom-to-operate claim chart (~$8–25k est.) only after Stage 1 PoC go.  
 **Source:** `strategy/iswimband-patent-analysis.md`, `strategy/invent-around-checklist.md`
 

@@ -13,7 +13,7 @@ This project is an attempt to build one — openly, and to hand it off to anyone
 
 ## The solution
 
-Guardian Goggles is a **session-aware alert layer** for residential pools:
+This project is a **session-aware alert layer** for residential pools:
 
 1. **Wearable BLE sensor** — cheap, rechargeable, clips to swim goggles. Water kills 2.4 GHz
    BLE in centimetres; submersion causes rapid signal loss.
@@ -65,5 +65,5 @@ connectivity notice, not an alarm. This framing lets parents rely on the alert w
 ## Target user
 
 Residential parent with a backyard pool and a child under ~8. Harm peaks when contact is brief
-and unsupervised — a few minutes at most. The parent is nearby but distracted. Guardian Goggles
-is a cheap, loud backup signal, not a surveillance system.
+and unsupervised — a few minutes at most. The parent is nearby but distracted. This app is a
+cheap, loud backup signal, not a surveillance system.

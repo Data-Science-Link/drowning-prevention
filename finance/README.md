@@ -1,6 +1,6 @@
 # finance/
 
-Unit economics models and capital worksheets for Guardian Goggles.
+Unit economics models and capital worksheets for the drowning-prevention parent app.
 
 ## Contents (to be migrated selectively)
 

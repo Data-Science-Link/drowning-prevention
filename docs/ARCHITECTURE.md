@@ -14,7 +14,7 @@
 
 2.4 GHz radio is absorbed by water. When a sensor-equipped child submerges, BLE RSSI drops rapidly — typically within centimetres of the water surface. This is well-understood RF physics and is the foundational signal.
 
-**BLE loss alone is not a drowning diagnosis.** Dry causes (phone moved, battery drained, play dunk, towel) produce identical RSSI drops. Guardian Goggles uses BLE loss as one input to a fused decision, not the sole trigger.
+**BLE loss alone is not a drowning diagnosis.** Dry causes (phone moved, battery drained, play dunk, towel) produce identical RSSI drops. The app uses BLE loss as one input to a fused decision, not the sole trigger.
 
 ### Session model
 
@@ -73,7 +73,6 @@ Requires pilot economics. Factory COGS quotes, IP67 certify if enclosure decided
 
 - **Now:** Static HTML wireframe (next PR). Hosted on GitHub Pages (`frontend/public/`).
 - **Target:** React Native / Expo app for iOS + Android. Expo is **parked** until after Stage 1 PoC validates the tech; HTML-first reduces risk.
-- **Pages hosting plan:** `frontend/public/index.html` → GitHub Actions → GitHub Pages. Docs site may eventually live at `docs-site/` using a static site generator.
 
 ### Backend
 

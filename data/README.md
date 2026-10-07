@@ -1,6 +1,6 @@
 # data/
 
-Fixtures, simulated datasets, and data schemas for Guardian Goggles.
+Fixtures, simulated datasets, and data schemas for the drowning-prevention parent app.
 
 ## Status
 

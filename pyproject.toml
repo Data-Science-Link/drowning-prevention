@@ -1,5 +1,5 @@
 [project]
-name = "guardian-goggles"
+name = "drowning-prevention"
 version = "0.1.0"
 description = "Parent-facing drowning-prevention wearable + phone app — BLE session-aware alert system"
 readme = "README.md"

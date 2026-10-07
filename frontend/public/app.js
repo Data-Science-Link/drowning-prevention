@@ -1,5 +1,5 @@
 /**
- * Guardian Goggles — Parent App Wireframe (vanilla)
+ * Pool Safety Monitor — Parent App Wireframe (vanilla)
  * Prefers Backend mock (http://127.0.0.1:8787); falls back to data/fixtures/.
  * Locks: wearable sensor; SubmersionSuspect ≠ LostConnection; never BLE=drowning;
  * Free=1 child + today history; Sub=multi + richHistory; ASP note if pricing.
@@ -733,7 +733,7 @@
     const steps = [
       {
         title: "An extra layer for pool time",
-        body: "Guardian Goggles helps you monitor a wearable sensor during an intentional Pool Session. It is a backup — not a life-safety guarantee. Quiet does not mean safe.",
+        body: "This app helps you monitor a wearable sensor during an intentional Pool Session. It is a backup — not a life-safety guarantee. Quiet does not mean safe.",
       },
       {
         title: "Two different alerts — never confused",
@@ -1112,7 +1112,7 @@
 
   function render() {
     if (!state.scenario) {
-      root().innerHTML = `<div class="empty">Loading fixtures…<br/><span class="tiny">Serve from /workspace/guardian-goggles with python -m http.server</span></div>`;
+      root().innerHTML = `<div class="empty">Loading fixtures…<br/><span class="tiny">Serve from repo root with python -m http.server</span></div>`;
       return;
     }
 

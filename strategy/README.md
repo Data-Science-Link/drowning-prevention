@@ -1,6 +1,6 @@
 # strategy/
 
-Market landscape, legal/IP analysis, business case, and go-to-market strategy for Guardian Goggles.
+Market landscape, legal/IP analysis, business case, and go-to-market strategy for the drowning-prevention parent app.
 
 ## Contents (to be migrated selectively)
 

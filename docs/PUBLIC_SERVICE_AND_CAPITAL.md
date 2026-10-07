@@ -26,7 +26,7 @@ surface. That is well-understood RF physics. The key design insight is that **BL
 not a reliable trigger**: a towel, a phone walked to the kitchen, or a play dunk all produce the
 same drop. Prior products that treated BLE loss as "submersion" burned parent trust fast.
 
-Guardian Goggles adds two gates to cut false alarms:
+Two gates cut false alarms:
 
 1. **Explicit Pool Session.** A parent opens the app and taps "Start Session" before kids enter
    the water. No session → no SubmersionSuspect. This single gate eliminates the entire class of
