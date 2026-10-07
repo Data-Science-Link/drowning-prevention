@@ -80,6 +80,18 @@ for the live list of unresolved questions.
 
 ---
 
+## Stage 1 hardware PoC — builder entry point
+
+> **If you want to build Stage 1 right now,** the complete shopping list, assembly plan, backyard protocol, and pass/fail criteria are in:
+>
+> **[`science/04-lean-poc-bom.md`](../science/04-lean-poc-bom.md)**
+>
+> That document has a builder quickstart at the top. Read §7 (Safety) first. Total core cart spend is ~$110–245 (midpoint ~$250, ceiling ≤$400). You need no other tools or accounts — just parts, a phone you already own, and a backyard pool.
+>
+> Pass criteria and the go/no-go gate are in §6 of that document. A pass does **not** authorize further capital spend on its own — see [`strategy/kill-vs-continue-checklist.md`](../strategy/kill-vs-continue-checklist.md) and [`finance/lean-phase-capital.md`](../finance/lean-phase-capital.md).
+
+---
+
 ## What ~$100K could buy (and what it cannot)
 
 This is an exploration budget — enough to prove the hardware physics and de-risk the next
@@ -89,7 +101,7 @@ decision. It is **not** manufacturing capital.
 
 | Item | Rough cost | Purpose |
 |---|---|---|
-| Stage 1 HW carts (issue [#14](https://github.com/Data-Science-Link/drowning-prevention/issues/14)) | $200–400 parts + time | ESP32/nRF52 dev boards, wetness pads, IMU; backyard RSSI + fusion measurement |
+| Stage 1 HW PoC ([builder guide](../science/04-lean-poc-bom.md), issue [#14](https://github.com/Data-Science-Link/drowning-prevention/issues/14)) | $200–400 parts + time | ESP32/nRF52 dev boards, wetness pads, IMU; backyard RSSI + fusion measurement. **Start here → [`science/04-lean-poc-bom.md`](../science/04-lean-poc-bom.md)** |
 | Stage 0 wireframe + mock API ([#10](https://github.com/Data-Science-Link/drowning-prevention/issues/10), [#11](https://github.com/Data-Science-Link/drowning-prevention/issues/11)) | Founder/volunteer time | HTML UX demo on GitHub Pages; validates alert chrome before hardware spend |
 | FTO claim chart (post-Stage 1 go) | $8–25K est. | WAVE US11715361 claim chart; whether invent-around holds |
 | Soft pilot design (Stage 2 prep) | $20–50K est. | Semi-custom PCB, small enclosure run, iOS/Android beta (50–500 units) |
