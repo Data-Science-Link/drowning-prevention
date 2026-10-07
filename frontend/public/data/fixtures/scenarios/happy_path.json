@@ -1,0 +1,88 @@
+{
+  "scenarioId": "happy_path",
+  "title": "Happy path \u2014 clean pool session",
+  "entitlement": {
+    "tier": "free",
+    "maxChildren": 1,
+    "familySharingEnabled": false,
+    "richHistoryEnabled": false
+  },
+  "householdRef": "household_free.json",
+  "expectedAlertType": null,
+  "summary": "Pair wearable sensor \u2192 start Pool Session \u2192 monitor \u2192 end session. No alerts.",
+  "children": [
+    {
+      "childId": "ch_7a2f9c01",
+      "displayName": "Sam Rivera",
+      "sensorId": "sns_ble_1104",
+      "batteryPct": 86,
+      "lastSeenAt": "2026-09-21T16:42:00-05:00",
+      "connectionState": "connected",
+      "sessionActive": false,
+      "deviceHealth": {
+        "batteryPct": 86,
+        "worn": true,
+        "signal": "good",
+        "charging": false
+      }
+    }
+  ],
+  "alerts": [],
+  "history": [
+    {
+      "entryId": "hx_hp_01",
+      "at": "2026-09-21T16:30:00-05:00",
+      "kind": "session",
+      "label": "Pool Session started",
+      "childId": "ch_7a2f9c01"
+    },
+    {
+      "entryId": "hx_hp_02",
+      "at": "2026-09-21T16:42:00-05:00",
+      "kind": "session",
+      "label": "Pool Session ended \u2014 all clear",
+      "childId": "ch_7a2f9c01"
+    }
+  ],
+  "timeline": [
+    {
+      "t": 0,
+      "kind": "note",
+      "note": "Wearable sensor paired; battery 86%"
+    },
+    {
+      "t": 5,
+      "kind": "session_start",
+      "childId": "ch_7a2f9c01",
+      "connectionState": "monitoring"
+    },
+    {
+      "t": 20,
+      "kind": "state_change",
+      "childId": "ch_7a2f9c01",
+      "connectionState": "monitoring",
+      "note": "Stable signal"
+    },
+    {
+      "t": 90,
+      "kind": "battery_tick",
+      "childId": "ch_7a2f9c01",
+      "note": "batteryPct=85"
+    },
+    {
+      "t": 180,
+      "kind": "session_end",
+      "childId": "ch_7a2f9c01",
+      "connectionState": "connected",
+      "note": "Parent ended session"
+    }
+  ],
+  "initialScreen": "home",
+  "demoFocus": {
+    "showAlert": false,
+    "sessionActive": true,
+    "connectionState": "monitoring"
+  },
+  "demoDate": "2026-09-21",
+  "formFactorNote": "wearable_ble_sensor_hold"
+}

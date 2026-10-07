@@ -1,0 +1,14 @@
+{
+  "householdId": "hh_sub_demo_01",
+  "tier": "sub",
+  "maxChildren": 5,
+  "familySharingEnabled": true,
+  "richHistoryEnabled": true,
+  "aspNote": {
+    "launchKitUsd": "150-250",
+    "subscriptionUsdMo": 2.99,
+    "subscriptionCovers": ["multiChild", "familySharing", "richHistory"],
+    "coreAlertsPaywalled": false
+  },
+  "parentDisplayName": "Jordan (demo parent)"
+}

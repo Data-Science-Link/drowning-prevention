@@ -1,0 +1,27 @@
+scenario,retail,cogs,gm_dollar,gm_pct,sub_price_mo,attach_rate,ltv_24mo,cac_placeholder,capital_poc,capital_pilot,capital_mfg_tooling,notes
+A_Low_HW,30,10,20,0.67,,,,,,,,ASSUMPTION founder band; HW GM before fees; RED for DTC CAC
+A_Mid_HW,40,12,28,0.70,,,,,,,,ASSUMPTION founder planning mid
+A_High_HW,50,14,36,0.72,,,,,,,,ASSUMPTION founder high
+A_Mid_contrib_after_fees,40,12,20,0.50,,,,,,,,ASSUMPTION after 15% channel + 5% warranty; contrib pre-CAC =20
+B_Kit_150,150,45,105,0.70,,,,,,,,ASSUMPTION market-anchored kit COGS incl hub path; contrib after fees=75
+B_Kit_199,199,50,149,0.75,,,,,,,,ASSUMPTION mirrors WaterWatch RESEARCHED 199; contrib after fees=109; PRIMARY CASE
+B_Kit_250,250,55,195,0.78,,,,,,,,ASSUMPTION high kit; contrib after fees=145
+C_199_attach10,199,50,149,0.75,2.99,0.10,6.22,,,,,ASSUMPTION optional sub; unit value HW109+6.22
+C_199_attach25,199,50,149,0.75,2.99,0.25,15.54,,,,,ASSUMPTION optional sub; unit value ~125
+C_199_attach40,199,50,149,0.75,2.99,0.40,24.86,,,,,ASSUMPTION optional sub; unit value ~134
+A_stack_40_10pct_CAC50,40,12,20,0.50,2.99,0.10,6.22,50,,,,ASSUMPTION unit~26 - CAC50 = -24 RED BREAKS
+A_stack_40_25pct_CAC50,40,12,20,0.50,2.99,0.25,15.54,50,,,,ASSUMPTION unit~36 -50 = -14 RED
+A_stack_40_40pct_CAC25,40,12,20,0.50,2.99,0.40,24.86,25,,,,ASSUMPTION unit~45 -25 = +20 only works at low CAC
+B_stack_199_CAC50,199,50,109,0.55,,,,50,,,,ASSUMPTION HW contrib after fees 109 - CAC50 = +59 viable
+B_stack_199_CAC80,199,50,109,0.55,,,,80,,,,ASSUMPTION +29 viable
+B_stack_199_CAC120,199,50,109,0.55,,,,120,,,,ASSUMPTION -11 breaks; BE CAC ~109
+C_stack_199_25pct_CAC120,199,50,109,0.55,2.99,0.25,15.54,120,,,,ASSUMPTION ~125-120 = +5 marginal
+D_mandatory_sub_FLAG,,,,,,,,,,,,DO NOT; paywall-on-safety optics; WAVE B2B not DTC; CoS lean against
+Anchor_WaterWatch,199,,,,,,,,,,,RESEARCHED https://wtrwatch.com Hub+1 Band 199 USD; NO subscription
+Anchor_PoolAlarm_band,200,,,,,,,,,,,RESEARCHED via early-strategy brief ~200-300 Poolguard-class
+Anchor_WAVE_facility_mo,149,,,,,,,,,,,RESEARCHED wavedds.com/pricing 149-399/mo facility HWaaS NOT DTC
+Anchor_iSwimband,99,,,,,,,,,,,RESEARCHED launch ~99-125 one-shot non-rechargeable stalled
+Capital_PoC_band,,,,,,,,,15000-40000,,,ASSUMPTION guess
+Capital_Pilot_band,,,,,,,,,,40000-120000,,ASSUMPTION guess
+Capital_Mfg_tooling_band,,,,,,,,,,,80000-250000,ASSUMPTION guess
+Battery_rechargeable_premium,,,,,,,,,,,,ASSUMPTION ~3-6 USD vs disposable; RESEARCHED CR2032 0.04-0.15 LiPo 1-3

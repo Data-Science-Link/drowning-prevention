@@ -1,0 +1,129 @@
+{
+  "scenarioId": "multi_child_one_alert",
+  "title": "Multi-child (sub) \u2014 only child B SubmersionSuspect",
+  "entitlement": {
+    "tier": "sub",
+    "maxChildren": 5,
+    "familySharingEnabled": true,
+    "richHistoryEnabled": true
+  },
+  "householdRef": "household_sub.json",
+  "expectedAlertType": "SubmersionSuspect",
+  "alertChildKey": "B",
+  "summary": "Subscription household with two kids. Child A stays Monitoring; only child B opens SubmersionSuspect.",
+  "children": [
+    {
+      "childId": "ch_a11e4001",
+      "displayName": "Casey Quinn",
+      "childKey": "A",
+      "sensorId": "sns_ble_2201",
+      "batteryPct": 91,
+      "lastSeenAt": "2026-09-21T17:20:30-05:00",
+      "connectionState": "monitoring",
+      "sessionActive": true,
+      "deviceHealth": {
+        "batteryPct": 91,
+        "worn": true,
+        "signal": "good",
+        "charging": false
+      }
+    },
+    {
+      "childId": "ch_b22f5112",
+      "displayName": "Riley Quinn",
+      "childKey": "B",
+      "sensorId": "sns_ble_2202",
+      "batteryPct": 74,
+      "lastSeenAt": "2026-09-21T17:20:00-05:00",
+      "connectionState": "submersion_suspect",
+      "sessionActive": true,
+      "deviceHealth": {
+        "batteryPct": 74,
+        "worn": true,
+        "signal": "lost",
+        "charging": false
+      }
+    }
+  ],
+  "alerts": [
+    {
+      "alertId": "al_multi_b01",
+      "childId": "ch_b22f5112",
+      "type": "SubmersionSuspect",
+      "openedAt": "2026-09-21T17:20:14-05:00",
+      "resolvedAt": null,
+      "ackBy": null,
+      "scenarioId": "multi_child_one_alert",
+      "headline": "Possible prolonged submersion \u2014 check on Riley now",
+      "body": "Riley's wearable sensor signal has been absent for more than 10 seconds during a Pool Session. Go look at Riley now. This is not a diagnosis \u2014 it is a prompt to check. Casey is still monitoring normally."
+    }
+  ],
+  "history": [
+    {
+      "entryId": "hx_mc_01",
+      "at": "2026-09-21T17:10:00-05:00",
+      "kind": "session",
+      "label": "Pool Session started (2 children)",
+      "childId": null
+    },
+    {
+      "entryId": "hx_mc_02",
+      "at": "2026-09-21T17:20:14-05:00",
+      "kind": "alert",
+      "label": "SubmersionSuspect \u2014 Riley Quinn",
+      "childId": "ch_b22f5112",
+      "alertType": "SubmersionSuspect"
+    },
+    {
+      "entryId": "hx_mc_03",
+      "at": "2026-09-20T15:00:00-05:00",
+      "kind": "session",
+      "label": "Yesterday session (richHistory)",
+      "childId": "ch_a11e4001",
+      "richOnly": true
+    }
+  ],
+  "timeline": [
+    {
+      "t": 0,
+      "kind": "session_start",
+      "childId": "ch_a11e4001",
+      "connectionState": "monitoring"
+    },
+    {
+      "t": 0,
+      "kind": "session_start",
+      "childId": "ch_b22f5112",
+      "connectionState": "monitoring"
+    },
+    {
+      "t": 200,
+      "kind": "blip_start",
+      "childId": "ch_b22f5112",
+      "note": "Child B signal lost"
+    },
+    {
+      "t": 214,
+      "kind": "alert_open",
+      "childId": "ch_b22f5112",
+      "connectionState": "submersion_suspect",
+      "note": "Only B \u2192 SubmersionSuspect"
+    },
+    {
+      "t": 214,
+      "kind": "state_change",
+      "childId": "ch_a11e4001",
+      "connectionState": "monitoring",
+      "note": "Child A unaffected"
+    }
+  ],
+  "initialScreen": "alert_submersion",
+  "demoFocus": {
+    "showAlert": true,
+    "alertType": "SubmersionSuspect",
+    "alertChildId": "ch_b22f5112",
+    "sessionActive": true
+  },
+  "demoDate": "2026-09-21",
+  "formFactorNote": "wearable_ble_sensor_hold"
+}

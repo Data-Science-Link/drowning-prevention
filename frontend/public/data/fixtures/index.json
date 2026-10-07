@@ -1,0 +1,41 @@
+{
+  "contractVersion": "0.2.1",
+  "contractFile": "scenario-contract.v0.json",
+  "demoDateDefault": "2026-09-21",
+  "scenarios": [
+    {
+      "scenarioId": "happy_path",
+      "file": "scenarios/happy_path.json",
+      "expectedAlertType": null,
+      "entitlementTier": "free"
+    },
+    {
+      "scenarioId": "ble_blip_lt_10s",
+      "file": "scenarios/ble_blip_lt_10s.json",
+      "expectedAlertType": null,
+      "entitlementTier": "free"
+    },
+    {
+      "scenarioId": "submersion_gt_10s",
+      "file": "scenarios/submersion_gt_10s.json",
+      "expectedAlertType": "SubmersionSuspect",
+      "entitlementTier": "free"
+    },
+    {
+      "scenarioId": "walkaway_lost",
+      "file": "scenarios/walkaway_lost.json",
+      "expectedAlertType": "LostConnection",
+      "entitlementTier": "free"
+    },
+    {
+      "scenarioId": "multi_child_one_alert",
+      "file": "scenarios/multi_child_one_alert.json",
+      "expectedAlertType": "SubmersionSuspect",
+      "entitlementTier": "sub",
+      "alertChildKey": "B"
+    }
+  ],
+  "note": "Scenario files owned by Data Eng; Backend serves unchanged. demoDateDefault is fixture clock for free today_only history.",
+  "status": "timelines_ready",
+  "notes": "Data Eng owns; Backend serves unchanged; Frontend consumes mock only. Synthetic kids; opaque childIds."
+}
