@@ -1,8 +1,9 @@
 name: CI
 
-# Required by the Main Branch Protections ruleset (check name: frontend-smoke).
-# Do not add path filters. A skipped required check stays "Waiting for status"
-# forever, including on docs-only PRs.
+# Check name: frontend-smoke.
+# Meant to be required on the Main Branch Protections ruleset next to
+# security-audit. Do not add path filters. A skipped required check stays
+# "Waiting for status" forever, including on docs-only PRs.
 #
 # push is unfiltered so a feature-branch push still reports the check when the
 # pull_request webhook is dropped (draft / bot-opened PRs). Keep workflow_dispatch

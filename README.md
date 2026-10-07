@@ -2,7 +2,9 @@
 
 Public repository for Guardian Goggles, a drowning-prevention project.
 
-The default branch `main` is covered by the Main Branch Protections ruleset. That ruleset blocks deletion and force-pushes, requires a pull request (one approval, code owner review, last-push approval, and resolved conversations), and requires the `security-audit` and `frontend-smoke` status checks. Repository admins can bypass those rules.
+The default branch `main` is covered by the Main Branch Protections ruleset. That ruleset blocks deletion and force-pushes, requires a pull request (one approval, code owner review, last-push approval, and resolved conversations), and requires the `security-audit` status check. Repository admins can bypass those rules.
+
+CI reports `frontend-smoke` on every push and pull request so it can be required beside `security-audit`. The ruleset currently requires `security-audit` only.
 
 ## Reporting security issues
 
