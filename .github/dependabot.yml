@@ -1,0 +1,10 @@
+version: 2
+updates:
+  # Workflow actions are the only manifests in the repo today.
+  # npm and pip are omitted on purpose: Dependabot errors when the
+  # ecosystem is configured and no package.json or Python manifest exists.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
