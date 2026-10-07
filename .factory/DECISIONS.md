@@ -43,3 +43,15 @@ Append-only. Newest at the bottom.
 - **Why:** The repo already had full docs, CI, tests, and open issues (merged in from main). DOCS.md must reflect reality so agents can navigate without guessing.
 - **Role boundary:** Product/technical ADRs (D-001 … D-007) live in `docs/DECISIONS.md` and are the product source of truth. `.factory/DECISIONS.md` records factory-process decisions only (how we run the loop, intake, coordination). Agents must not conflate the two files.
 - **Revisit when:** New top-level docs are added — append rows to DOCS.md rather than editing this entry.
+
+### 2026-10-07 — Liability gates + contributor sketches
+- **Decision:** Add `skills/liability-gates.md` and portable sketches (`CONTRIBUTING.md`, PR template, CODEOWNERS example) under `.factory/sketches/`. Factory-loop must follow liability-gates. Not legal advice; does not eliminate liability.
+- **Why:** Light-review public factories need machine-readable hard stops (secrets, license, CI, over-claims) and copy-paste diligence artifacts.
+- **Alternatives:** Repo-only ad hoc docs; no agent-enforced gates.
+- **Revisit when:** Counsel provides project-specific terms, or CLA is chosen over DCO.
+
+### 2026-10-07 — Always sync latest main before factory work
+- **Decision:** Factory skills require fetching/updating onto the current default branch before branching or continuing work; cloud agents may have a slightly stale main.
+- **Why:** Avoid PRs based on outdated tips and painful rebase conflicts.
+- **Alternatives:** Hope the agent environment is fresh; only sync when conflicts appear.
+- **Revisit when:** Agent harnesses guarantee up-to-date default branch at start.
