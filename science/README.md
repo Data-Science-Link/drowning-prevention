@@ -2,7 +2,7 @@
 
 BLE physics, power/battery BOM, alternative sensors, and hardware PoC research for the drowning-prevention parent app.
 
-## Contents (to be migrated selectively)
+## Contents
 
 | File | Description |
 |---|---|
@@ -10,7 +10,8 @@ BLE physics, power/battery BOM, alternative sensors, and hardware PoC research f
 | `01-ble-submersion-signal.md` | Full BLE submersion signal analysis |
 | `02-power-battery-bom.md` | Power budget; rechargeable cell sizing; BOM estimates |
 | `03-alt-sensors-vs-ble.md` | Wetness, IMU, pressure — sensor comparison vs BLE-only |
-| `04-lean-poc-bom.md` | Stage 1 lean PoC BOM (ESP32/nRF52 + peripherals; ≤~$400 target) |
+| `04-lean-poc-bom.md` | **Stage 1 lean PoC BOM** — builder quickstart, shopping cart, backyard protocol, pass/fail gate (ESP32/nRF52 + peripherals; ≤~$400 target). **Start here for hardware PoC.** |
+| `poc-session-log.template.csv` | Blank CSV template matching §5 trial columns — copy before each pool session |
 
 ## Key findings (summary)
 

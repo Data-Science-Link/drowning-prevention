@@ -1,0 +1,23 @@
+t_iso,trial,mount,pool_type,depth_cm,orientation,phone_dist_m,rssi_dbm,adv_name,wet_flag,imu_flag,gap_s,phone_state,fused_label,ble_only_label,notes
+# Instructions:
+# t_iso         — ISO 8601 timestamp, e.g. 2026-10-10T14:05:33-05:00
+# trial         — A | B | C | D | E | F | G  (see §5 of 04-lean-poc-bom.md)
+# mount         — headband | strap | wrist | pole | dummy  (write once in session header; repeat each row)
+# pool_type     — chlorine | salt | unknown
+# depth_cm      — 0 (air) | ~5 (just wet) | 15 | 30 | deeper  (estimate OK)
+# orientation   — face-up | face-down | side | N/A
+# phone_dist_m  — approximate distance from phone to device in metres
+# rssi_dbm      — dBm reading from nRF Connect or scanner log; leave blank if packet lost
+# adv_name      — advertiser name string seen on phone (e.g. PSM-ADV, PSM-WET, PSM-DRY)
+# wet_flag      — 0 | 1  (0=dry, 1=wet as read by firmware)
+# imu_flag      — S | M  (S=still, M=motion above bench threshold)
+# gap_s         — seconds since last packet received; blank if actively connected
+# phone_state   — monitoring | blip | lost
+# fused_label   — monitoring | blip | LostConnection | PossibleSubmersion  (uses wet+IMU)
+# ble_only_label — monitoring | blip | LostConnection | PossibleSubmersion  (ignores wet+IMU; exists to show the false path, NOT to ship it)
+# notes         — free text: anomalies, log exports, environmental conditions
+#
+# Reminder: BLE loss alone != drowning. fused_label uses wet+IMU; ble_only_label does not.
+# Score §6 pass/fail from fused_label column, not ble_only_label.
+# Delete these comment rows before importing into analysis tools.
+,,,,,,,,,,,,,,,

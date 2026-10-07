@@ -1,11 +1,30 @@
 # Stage-1 lean PoC — shopping BOM + backyard protocol
 
 **Date:** 2026-10-02 (America/Chicago)  
-**Audience:** Michael Link (founder) + GG Chief of Staff  
+**Audience:** Michael Link (founder) + PoC builder / project lead  
 **Not:** marketing, legal advice, a drowning detector, or product COGS  
 **Form factor:** **HOLD** — PoC wear mount is agnostic (headband, goggle strap, or wrist all acceptable). Do not lock a product form from this build.  
 **Spend lock (CFO):** core cart **~$110–245**, planning midpoint **~$250**, ceiling **≤$400**. USB power meter and burner phone are **off this cart**. Street-price checks live only in the appendix and **do not revise** the table.  
 **Companions:** `01-ble-submersion-signal.md` + brief, `02-power-battery-bom.md`, `03-alt-sensors-vs-ble.md`, `strategy/kill-vs-continue-checklist.md`, `finance/lean-phase-capital.md`, `strategy/counsel-deferred-poc.md`
+
+---
+
+## Builder quickstart (cold start — read this first)
+
+> **Order of operations for a first-time builder:**
+>
+> 1. **Read §7 (Safety) before anything else.** Never use a child as the test subject for intentional submersion or distress tests — use a pole, dummy, or adult volunteer only. Adult supervision for the whole session, every session.
+> 2. **Buy the cart in §2.** Order the locked core lines (~$110–245). Do not add the out-of-budget items in §3.
+> 3. **Assemble on Saturday (§4 Wiring).** One weekend build on a bench. No soldering required for the first pass; DuPont jumpers are fine.
+> 4. **Flash firmware Sunday morning (§4 Firmware states).** Six advertiser states: `PSM-OFF`, `PSM-ADV`, `PSM-WET`, `PSM-DRY`, with motion and still suffixes. No custom app — use nRF Connect or the existing wireframe for UX label reference.
+> 5. **Run trials A–G (§5 Backyard pool protocol).** Half-day session. Log every row in the [CSV template](poc-session-log.template.csv).
+> 6. **Score pass/fail (§6).** Three hard gates. All three must pass to proceed.
+> 7. **Write a one-page measurement note (§8).** Attach CSV + what passed or failed. Do not pitch from memory.
+> 8. **Gate further spend here →** If §6 passes, see [`strategy/kill-vs-continue-checklist.md`](../strategy/kill-vs-continue-checklist.md) and [`finance/lean-phase-capital.md`](../finance/lean-phase-capital.md) before spending more. Neither document authorizes counsel or CapEx spend on its own — both require a human decision.
+
+> **Hard lock — read before building:** **BLE-only "lost > ~10 s" ≠ drowning.** This PoC may *measure* an RF drop when the antenna is underwater. The ship path is **fusion** (wetness + duty-cycled IMU; pressure only as a later spike) + **Pool Session** + phone presence + dual UX: **Lost Connection / monitoring interrupted ≠ possible submersion / SubmersionSuspect**. Do not write drowning claims into firmware, app strings, or logs.
+
+---
 
 **Hard lock:** **BLE-only “lost > ~10 s” ≠ drowning.** This PoC may *measure* an RF drop when the antenna is under water. The ship path is **fusion** (wetness + duty-cycled IMU; pressure only as a later spike) + **Pool Session** + phone presence + dual UX (**Lost Connection / monitoring interrupted ≠ possible submersion**). Do not write drowning claims into firmware, app strings, or logs.
 
@@ -106,9 +125,9 @@ Session switch (button or a GPIO you short): **off / slow** vs **session on**.
 
 | State | Radio | What to put in the name or manufacturer data |
 |-------|--------|-----------------------------------------------|
-| **Off** | Advertising **slow or stopped** (1–10 s or deep sleep). `02`: fast adv is session-only. | `GG-OFF` |
-| **Advertising** | Session on: **~100–300 ms** adv while testing. 0 dBm is enough. | `GG-ADV` + RSSI is measured by the phone, not the tag |
-| **Wet** | Same session interval | `GG-WET` when pads read wet; `GG-DRY` otherwise |
+| **Off** | Advertising **slow or stopped** (1–10 s or deep sleep). `02`: fast adv is session-only. | `PSM-OFF` |
+| **Advertising** | Session on: **~100–300 ms** adv while testing. 0 dBm is enough. | `PSM-ADV` + RSSI is measured by the phone, not the tag |
+| **Wet** | Same session interval | `PSM-WET` when pads read wet; `PSM-DRY` otherwise |
 | **IMU motion flag** | Same; sample accel at low rate, not full gyro | Append `M` if motion variance above a bench threshold, `S` if still |
 | **Lost** | This is a **phone-side** state, not a tag state | Scanner: no packet for **≥ ~10 s** → lost. Tag cannot see that it is lost. |
 
@@ -143,6 +162,8 @@ Depths to actually write down: **0 cm (air)**, **antenna just wet / ~5 cm**, **~
 
 ### CSV columns
 
+Use the [session log template](poc-session-log.template.csv) to pre-fill headers before the pool day.
+
 `t_iso, trial, mount, pool_type, depth_cm, orientation, phone_dist_m, rssi_dbm, adv_name, wet_flag, imu_flag, gap_s, phone_state, fused_label, ble_only_label, notes`
 
 - `pool_type`: `chlorine` | `salt` | `unknown`  
@@ -168,6 +189,13 @@ Qualitative. Every threshold is **ASSUMPTION until this pool day measures it.** 
 2. **Every normal dunk** still false-alarms **with fusion on** (wet+short dip, or wet for the whole swim, still pages possible submersion).
 
 Do not “fix” a kill by renaming BLE-loss to drowning. That path is non-shippable (`01`, checklist K5).
+
+> **Go / no-go gate — gate further spend here:**
+> A pass on all three above is a **necessary but not sufficient** condition to continue. Before authorizing any new spend (counsel, CapEx, manufacturing), open:
+> - [`strategy/kill-vs-continue-checklist.md`](../strategy/kill-vs-continue-checklist.md) — full company kill criteria (K1–K5)
+> - [`finance/lean-phase-capital.md`](../finance/lean-phase-capital.md) — the deferred capital ladder
+>
+> Neither document authorizes spend on its own. Both require a human decision. Founder does not spend the $8k–$25k counsel band or the $15k+ PoC band off a verbal “it kinda worked.”
 
 ---
 
