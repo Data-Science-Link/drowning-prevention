@@ -8,7 +8,8 @@ Pointers only — do not duplicate long docs here. Open the linked file; do not 
 |---|---|---|
 | Overview / setup | `README.md` | Project pitch, stage ladder, quick-start |
 | Purpose / product framing | `docs/PURPOSE.md` | Mission, problem, user, stage goals |
-| Architecture | `docs/ARCHITECTURE.md` | System design, stage ladder, component map |
+| Architecture | `docs/ARCHITECTURE.md` | System design, stage ladder, component map — links to strategy/science/finance |
+| **Strategy overview** | `docs/STRATEGY.md` | Core thesis, comps, PoC path, patent risk, kill/continue — entry point for #12 packs |
 | Repo layout | `docs/REPO_LAYOUT.md` | Directory tree and conventions |
 | Dev / how to run | `docs/DEV.md` | `uv sync` to install; `uv run pytest` to test |
 | Standing product decisions | `docs/DECISIONS.md` | ADR-lite log — D-001 … D-007 (locked choices; open a PR to change) |
