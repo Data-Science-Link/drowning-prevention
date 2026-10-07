@@ -1,6 +1,6 @@
 # product/
 
-Feature maps, user stories, competitive analysis, and acceptance criteria for Guardian Goggles.
+Feature maps, user stories, competitive analysis, and acceptance criteria for the drowning-prevention parent app.
 
 ## Contents (to be migrated selectively)
 
@@ -8,7 +8,7 @@ Feature maps, user stories, competitive analysis, and acceptance criteria for Gu
 |---|---|
 | `pm-v0-feature-map.md` | Feature map for Stage 0 (Pool Session, dual alert states, free core alerts) |
 | `user-stories-outline.md` | User story outlines: parent setup, session start, alert response |
-| `competitive-gaps-iswimband.md` | Gap analysis vs iSwimband — what GG fixes |
+| `competitive-gaps-iswimband.md` | Gap analysis vs iSwimband — what this project fixes |
 | `wireframe-acceptance.md` | Stage 0 wireframe acceptance criteria (31/31 criteria tracked) |
 
 ## Core product constraints

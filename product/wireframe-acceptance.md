@@ -1,4 +1,4 @@
-# Wireframe acceptance notes — GG Parent App v1
+# Wireframe acceptance notes — Parent App v1
 
 Pass/fail for first viewable cut. Clean UI is a **hard** requirement.
 

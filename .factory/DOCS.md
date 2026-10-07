@@ -6,14 +6,15 @@ Pointers only — do not duplicate long docs here. Open the linked file; do not 
 
 | Topic | Path | Notes |
 |---|---|---|
-| Overview / setup | `README.md` | Project pitch, stage ladder, quick-start |
+| Overview / setup | `README.md` | Newcomer spine — 7-step reader journey (what it is → could someone ship it → comps → tech → app → cost → next) |
 | Purpose / product framing | `docs/PURPOSE.md` | Mission, problem, user, stage goals |
 | Architecture | `docs/ARCHITECTURE.md` | System design, stage ladder, component map — links to strategy/science/finance |
-| **Strategy overview** | `docs/STRATEGY.md` | Core thesis, comps, PoC path, patent risk, kill/continue — entry point for #12 packs |
+| **Strategy overview** | `docs/STRATEGY.md` | Core thesis, comps, PoC path, patent risk, kill/continue — entry point for research packs |
+| **Public-service & capital handoff** | `docs/PUBLIC_SERVICE_AND_CAPITAL.md` | Problem overview, what exists, ~$100K exploration path, kill criteria, how to contribute or fork |
+| Getting started (newcomer) | `docs/GETTING_STARTED.md` | Clone → Pages → optional mock → next steps (≤10 steps) |
 | Repo layout | `docs/REPO_LAYOUT.md` | Directory tree and conventions |
-| Dev / how to run | `docs/DEV.md` | `uv sync` to install; `uv run pytest` to test |
+| Dev / how to run | `docs/DEV.md` | `uv sync` to install; `uv run pytest` to test; mock server; Pages preview |
 | Standing product decisions | `docs/DECISIONS.md` | ADR-lite log — D-001 … D-007 (locked choices; open a PR to change) |
-| Public-service & capital handoff | `docs/PUBLIC_SERVICE_AND_CAPITAL.md` | Problem overview, what exists, ~$100K exploration path, kill criteria, how to contribute or fork |
 | Security policy | `SECURITY.md` | Vulnerability reporting, branch-protection notes |
 
 ## Living notes
@@ -22,6 +23,7 @@ Pointers only — do not duplicate long docs here. Open the linked file; do not 
 |---|---|---|
 | Current status | `notes/STATUS.md` | Stage, milestone, recent activity |
 | Open questions | `notes/OPEN_QUESTIONS.md` | Unresolved technical, product, legal questions |
+| Migration status | `notes/MIGRATION_STATUS.md` | Migration inventory: Keep / Link-only / Drop decisions |
 
 ## Area READMEs
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Guardian Goggles — wireframe mock HTTP API (v0)
+ * Pool Safety Monitor — wireframe mock HTTP API (v0)
  * Serves Data Eng fixtures UNCHANGED from disk.
  * Default: <repo-root>/data/fixtures (override GG_FIXTURES).
  * POST ack mutates in-memory copies only.

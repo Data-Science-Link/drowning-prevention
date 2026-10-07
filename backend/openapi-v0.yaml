@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Guardian Goggles Wireframe Mock API
+  title: Pool Safety Monitor Wireframe Mock API
   version: 0.2.1
   description: |
     Mock HTTP API for Expo RN wireframes. Serves Data Eng fixtures under

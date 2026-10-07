@@ -1,4 +1,4 @@
-# Guardian Goggles (GG): Alt Sensors vs BLE-Loss (Technical Addendum)
+# Alt Sensors vs BLE-Loss (Technical Addendum)
 
 **Document type:** Technical addendum for PM / eng / legal / CoS  
 **Companion to:** `01-ble-submersion-signal.md`, `02-power-battery-bom.md`  

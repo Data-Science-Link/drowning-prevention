@@ -2,7 +2,7 @@
   "name": "guardian-goggles-mock-api",
   "version": "0.1.0",
   "private": true,
-  "description": "Wireframe mock HTTP API for Guardian Goggles — serves Data Eng fixtures",
+  "description": "Wireframe mock HTTP API for the drowning-prevention parent app — serves Data Eng fixtures",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

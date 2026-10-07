@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Guardian Goggles mock API — in-process smoke test.
+ * Pool Safety Monitor mock API — in-process smoke test.
  * Loads fixtures, starts the server on an ephemeral port, probes key endpoints,
  * then exits 0 (pass) or 1 (fail). Zero extra deps.
  *

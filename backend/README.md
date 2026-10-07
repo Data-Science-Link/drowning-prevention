@@ -1,6 +1,6 @@
 # Backend (wireframe mocks)
 
-Mock HTTP APIs for the Guardian Goggles wireframe. **Frontend must consume these mocks** — no forked scenario logic.
+Mock HTTP APIs for the drowning-prevention parent app wireframe. **Frontend must consume these mocks** — no forked scenario logic.
 
 ## Purpose
 

@@ -1,7 +1,7 @@
-# Wireframe scope — GG Parent App (v1 cut)
+# Wireframe scope — Parent App (v1 cut)
 
 **Status:** UNLOCKED by CoS 2026-09-21  
-**Canonical root:** `/workspace/guardian-goggles/` only (no `/workspace/gg-*` writes)  
+**Canonical root:** repo root only (no `/workspace/gg-*` writes)  
 **Owners:** PM (this scope) → Frontend (interactive UI) · Backend (mock HTTP/WS) · Data Eng (fixtures)
 
 ## Planning locks
@@ -15,7 +15,7 @@
 | Copy | **Never equate BLE-loss with drowning** |
 | Subscription | **~$2.99/mo** optional: multi-child, family sharing, rich history |
 | Stack (wireframe) | **Expo RN** unless CoS overrides; HTML static cut OK for first viewable |
-| Fixtures | Data Eng owns `/workspace/guardian-goggles/data/fixtures/`; Backend serves; Frontend consumes only |
+| Fixtures | Data Eng owns `data/fixtures/`; Backend serves; Frontend consumes only |
 
 ## In scope (first interactive cut)
 
