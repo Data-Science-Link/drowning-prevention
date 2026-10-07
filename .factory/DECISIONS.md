@@ -37,3 +37,9 @@ Append-only. Newest at the bottom.
 - **Why:** Establishes a portable, model-agnostic process playbook; work items tracked via GitHub issues.
 - **Alternatives:** None evaluated; repo is greenfield with no prior process convention.
 - **Revisit when:** A README, docs/, or CI config is added — update DOCS.md pointers accordingly.
+
+### 2026-10-07 — Correction: this repo is not greenfield; DOCS.md and role boundaries updated
+- **Decision:** Updated `.factory/DOCS.md` to point at real existing paths (README.md, docs/PURPOSE.md, docs/ARCHITECTURE.md, docs/REPO_LAYOUT.md, docs/DEV.md, docs/DECISIONS.md, notes/STATUS.md, notes/OPEN_QUESTIONS.md, SECURITY.md, tests/, pyproject.toml, .github/workflows/, and area READMEs). The prior adoption note was wrong to describe the repo as greenfield.
+- **Why:** The repo already had full docs, CI, tests, and open issues (merged in from main). DOCS.md must reflect reality so agents can navigate without guessing.
+- **Role boundary:** Product/technical ADRs (D-001 … D-007) live in `docs/DECISIONS.md` and are the product source of truth. `.factory/DECISIONS.md` records factory-process decisions only (how we run the loop, intake, coordination). Agents must not conflate the two files.
+- **Revisit when:** New top-level docs are added — append rows to DOCS.md rather than editing this entry.
