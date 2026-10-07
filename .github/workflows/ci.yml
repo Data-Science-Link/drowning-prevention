@@ -1,0 +1,54 @@
+name: CI
+
+# Companion checks for HTML/JS product work. Not required by the ruleset yet;
+# promote to required once the Guardian Goggles tree is on main and stable.
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frontend-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: HTML wireframe present (when migrated)
+        run: |
+          if [ -d frontend/wireframe ]; then
+            test -f frontend/wireframe/index.html
+            test -f frontend/wireframe/app.js
+            test -f frontend/wireframe/styles.css
+            echo "Wireframe files OK"
+          else
+            echo "No frontend/wireframe yet — skipping structure check"
+          fi
+
+      - name: Set up Node
+        if: hashFiles('backend/mocks/package.json') != '' || hashFiles('frontend/**/package.json') != '' || hashFiles('package.json') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install and smoke mock backend
+        if: hashFiles('backend/mocks/package.json') != ''
+        working-directory: backend/mocks
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+          node --check server.js
+
+      - name: npm lint (when script exists)
+        if: hashFiles('package.json') != ''
+        run: |
+          if node -e "const p=require('./package.json'); process.exit(p.scripts&&p.scripts.lint?0:1)"; then
+            npm ci || npm install
+            npm run lint
+          else
+            echo "No root lint script — skip"
+          fi
