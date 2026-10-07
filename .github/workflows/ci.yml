@@ -27,6 +27,14 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Pages placeholder present
+        run: |
+          test -f frontend/public/index.html || \
+            (echo "frontend/public/index.html missing" && exit 1)
+          grep -q "Guardian Goggles" frontend/public/index.html || \
+            (echo "index.html does not mention Guardian Goggles" && exit 1)
+          echo "Pages placeholder: OK"
+
       - name: HTML wireframe present (when migrated)
         run: |
           if [ -d frontend/wireframe ]; then
@@ -60,3 +68,35 @@ jobs:
           else
             echo "No root lint script — skip"
           fi
+
+  python-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install uv
+        if: hashFiles('**/pyproject.toml') != ''
+        uses: astral-sh/setup-uv@38f3f104447c67c051c4a08e39b64a148898af3a # v4.2.0
+        with:
+          version: "0.12.23"
+
+      - name: Set up Python
+        if: hashFiles('**/pyproject.toml') != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        if: hashFiles('**/pyproject.toml') != ''
+        run: uv sync
+
+      - name: Run pytest
+        if: hashFiles('**/pyproject.toml') != ''
+        run: uv run pytest -v
+
+      - name: No pyproject.toml yet
+        if: hashFiles('**/pyproject.toml') == ''
+        run: echo "No pyproject.toml — skipping Python tests"
