@@ -52,12 +52,13 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install and smoke mock backend
+      - name: Smoke mock backend
         if: hashFiles('backend/mocks/package.json') != ''
         working-directory: backend/mocks
         run: |
           if [ -f package-lock.json ]; then npm ci; else npm install; fi
           node --check server.js
+          node smoke.js
 
       - name: npm lint (when script exists)
         if: hashFiles('package.json') != ''

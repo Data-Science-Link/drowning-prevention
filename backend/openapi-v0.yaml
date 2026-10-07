@@ -1,0 +1,168 @@
+openapi: 3.0.3
+info:
+  title: Guardian Goggles Wireframe Mock API
+  version: 0.2.1
+  description: |
+    Mock HTTP API for Expo RN wireframes. Serves Data Eng fixtures under
+    `data/fixtures/` (repo-root relative) unchanged (disk).
+    Contract: scenario-contract.v0.json v0.2.1.
+    Form factor HOLD — wearable BLE sensor copy. ASP is strategy, not API logic.
+servers:
+  - url: http://localhost:8787
+paths:
+  /health:
+    get:
+      summary: Liveness + contract version
+      responses:
+        '200':
+          description: OK
+  /v0/contract:
+    get:
+      summary: Full scenario-contract.v0.json
+      responses:
+        '200':
+          description: Contract document
+  /v0/scenarios:
+    get:
+      summary: List scenarioIds + resolved entitlement + expectedAlertType
+      responses:
+        '200':
+          description: Scenario list
+  /v0/scenarios/{scenarioId}:
+    get:
+      summary: Full fixture pack (+ entitlementResolved, demoDate)
+      parameters:
+        - $ref: '#/components/parameters/scenarioId'
+      responses:
+        '200':
+          description: Scenario pack
+        '404':
+          description: Unknown scenarioId
+  /v0/scenarios/{scenarioId}/children:
+    get:
+      summary: children[] (childProfileFields incl. sessionActive)
+      parameters:
+        - $ref: '#/components/parameters/scenarioId'
+      responses:
+        '200':
+          description: Children wrapper
+  /v0/scenarios/{scenarioId}/entitlements:
+    get:
+      summary: Resolved entitlement from household_*.json
+      parameters:
+        - $ref: '#/components/parameters/scenarioId'
+      responses:
+        '200':
+          description: Entitlement object (tier, maxChildren, familySharingEnabled, richHistoryEnabled)
+  /v0/scenarios/{scenarioId}/alerts:
+    get:
+      summary: Alerts from pack.alerts[]
+      description: |
+        Free (`richHistoryEnabled: false`): only alerts whose openedAt date equals
+        demoDate (default 2026-09-21). Paid: all alerts.
+      parameters:
+        - $ref: '#/components/parameters/scenarioId'
+      responses:
+        '200':
+          description: Alert list
+  /v0/scenarios/{scenarioId}/alerts/active:
+    get:
+      summary: Unresolved alerts
+      parameters:
+        - $ref: '#/components/parameters/scenarioId'
+      responses:
+        '200':
+          description: Active alerts
+  /v0/scenarios/{scenarioId}/alerts/{alertId}/ack:
+    post:
+      summary: Acknowledge alert (in-memory only)
+      parameters:
+        - $ref: '#/components/parameters/scenarioId'
+        - name: alertId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ackBy]
+              properties:
+                ackBy: { type: string }
+      responses:
+        '200':
+          description: Updated alert
+  /v0/scenarios/{scenarioId}/timeline:
+    get:
+      summary: timeline[] (field t, kind, …)
+      parameters:
+        - $ref: '#/components/parameters/scenarioId'
+      responses:
+        '200':
+          description: Timeline
+  /v0/scenarios/{scenarioId}/history:
+    get:
+      summary: history[] with free today / richOnly filter
+      parameters:
+        - $ref: '#/components/parameters/scenarioId'
+      responses:
+        '200':
+          description: History
+  /v0/scenarios/{scenarioId}/stream:
+    get:
+      summary: SSE timeline playback
+      parameters:
+        - $ref: '#/components/parameters/scenarioId'
+        - name: intervalMs
+          in: query
+          schema: { type: integer, default: 800 }
+      responses:
+        '200':
+          description: text/event-stream
+components:
+  parameters:
+    scenarioId:
+      name: scenarioId
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+          - happy_path
+          - ble_blip_lt_10s
+          - submersion_gt_10s
+          - walkaway_lost
+          - multi_child_one_alert
+  schemas:
+    Entitlement:
+      type: object
+      properties:
+        tier: { type: string, enum: [free, sub] }
+        maxChildren: { type: integer }
+        familySharingEnabled: { type: boolean }
+        richHistoryEnabled: { type: boolean }
+        householdId: { type: string }
+    Child:
+      type: object
+      properties:
+        childId: { type: string }
+        displayName: { type: string }
+        sensorId: { type: string }
+        batteryPct: { type: number }
+        lastSeenAt: { type: string }
+        connectionState:
+          type: string
+          enum: [connected, monitoring, submersion_suspect, lost_connection, offline]
+        sessionActive: { type: boolean }
+    Alert:
+      type: object
+      properties:
+        alertId: { type: string }
+        childId: { type: string }
+        type: { type: string, enum: [SubmersionSuspect, LostConnection] }
+        openedAt: { type: string }
+        resolvedAt: { type: string, nullable: true }
+        ackBy: { type: string, nullable: true }
+        scenarioId: { type: string }

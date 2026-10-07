@@ -42,6 +42,65 @@ The importable package lives at `src/guardian_goggles/`. It is installed in edit
 import guardian_goggles
 ```
 
+## Mock API (wireframe backend)
+
+The mock server lives in `backend/mocks/`. It has **zero npm deps** — only Node ≥ 18 stdlib.
+
+```bash
+# Start from the repo root:
+node backend/mocks/server.js
+# Default: PORT=8787, fixtures=data/fixtures, demoDate=2026-09-21
+
+# Or via npm:
+cd backend/mocks && npm start
+```
+
+Override any default with env vars:
+
+```bash
+PORT=9000 GG_DEMO_DATE=2026-09-22 node backend/mocks/server.js
+```
+
+Verify it's running:
+
+```bash
+curl http://localhost:8787/health
+curl http://localhost:8787/v0/scenarios
+```
+
+Run the smoke test (no server needed — starts in-process):
+
+```bash
+node backend/mocks/smoke.js
+# or:  cd backend/mocks && npm run smoke
+```
+
+See `backend/README.md` for the full endpoint table and `backend/mocks/SMOKE.md` for a sample run log.
+
+## Mock API + wireframe together
+
+The wireframe at `frontend/wireframe/` can run in two modes:
+
+**Static mode** (no mock needed) — the wireframe fetches fixtures directly from `frontend/public/data/fixtures/`:
+
+```bash
+cd frontend/public && python -m http.server 8080
+# open http://localhost:8080
+```
+
+**Live mock mode** — the wireframe detects the mock server and uses it instead:
+
+```bash
+# Terminal 1 — mock API:
+node backend/mocks/server.js        # http://localhost:8787
+
+# Terminal 2 — wireframe:
+cd frontend/public && python -m http.server 8080
+# open http://localhost:8080 — toggle "Mock API" in the UI
+```
+
+The frontend reads `MOCK_BASE_URL` (default `http://localhost:8787`) when the mock is available.
+
 ## Frontend / Pages preview
 
 The static site lives in `frontend/public/`. To preview locally:

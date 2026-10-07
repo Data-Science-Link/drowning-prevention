@@ -1,0 +1,15 @@
+{
+  "name": "guardian-goggles-mock-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Wireframe mock HTTP API for Guardian Goggles — serves Data Eng fixtures",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "smoke": "node smoke.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}
