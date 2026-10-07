@@ -1,10 +1,18 @@
 version: 2
 updates:
-  # Workflow actions are the only manifests in the repo today.
-  # npm and pip are omitted on purpose: Dependabot errors when the
-  # ecosystem is configured and no package.json or Python manifest exists.
+  # GitHub Actions — always active
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+
+  # Python / uv (pip ecosystem) — active now that pyproject.toml exists
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"

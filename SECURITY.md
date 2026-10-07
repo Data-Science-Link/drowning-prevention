@@ -11,3 +11,14 @@ https://github.com/Data-Science-Link/drowning-prevention/security/advisories/new
 Include the affected component, impact, and steps to reproduce. We will acknowledge a valid report and coordinate a fix before any public disclosure.
 
 This repository does not publish a security email address. If private vulnerability reporting is unavailable, contact the repository owner [Data-Science-Link](https://github.com/Data-Science-Link) on GitHub instead of posting details in public.
+
+## Alert-critical considerations
+
+Because this product is safety-adjacent (child monitoring), we treat any vulnerability that could **suppress a legitimate safety alert** as critical priority, regardless of how it is discovered.
+
+## Supported versions
+
+| Version | Supported |
+|---|---|
+| `main` branch | Yes |
+| Older branches | No |
