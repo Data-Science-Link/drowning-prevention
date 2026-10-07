@@ -1,6 +1,6 @@
 # frontend/
 
-User interface for Guardian Goggles.
+User interface for the drowning prevention parent app.
 
 ## Status
 
@@ -12,7 +12,7 @@ Acceptance: **31 / 31** checks passed — see `product/wireframe-acceptance.md`.
 ```
 frontend/
 ├── public/               ← Static site root; deployed to GitHub Pages
-│   ├── index.html        ← Wireframe entry point (Guardian Goggles Parent App)
+│   ├── index.html        ← Wireframe entry point (Parent App)
 │   ├── app.js            ← Screen router, mock/fixture loader, timeline engine
 │   ├── styles.css        ← Calm parent UI; distinct alert chrome
 │   └── data/
