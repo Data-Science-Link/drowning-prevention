@@ -1,0 +1,147 @@
+name: Security Audit Pipeline
+
+# Required by the Main Branch Protections ruleset (check name: security-audit).
+# Do not add path filters. A skipped required check stays "Waiting for status"
+# forever, including on docs-only PRs.
+#
+# push is unfiltered so a feature-branch push still reports the check when the
+# pull_request webhook is dropped (draft / bot-opened PRs). Keep workflow_dispatch
+# so a missing run can be started from the Actions tab without a new commit.
+on:
+  push:
+  pull_request:
+    branches: [ main, master, develop ]
+    types: [opened, synchronize, reopened, ready_for_review]
+  schedule:
+    - cron: '0 12 * * 1'
+  workflow_dispatch:
+
+# Least privilege for this job:
+# - contents: read — checkout
+# - pull-requests: write — gitleaks pull request comments
+# - security-events: write — gitleaks SARIF upload
+permissions:
+  contents: read
+  pull-requests: write
+  security-events: write
+
+jobs:
+  security-audit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Display context
+      env:
+        EVENT_NAME: ${{ github.event_name }}
+        PR_TITLE: ${{ github.event.pull_request.title }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+        REF_NAME: ${{ github.ref_name }}
+        COMMIT_SHA: ${{ github.sha }}
+        ACTOR: ${{ github.actor }}
+      run: |
+        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        if [ "$EVENT_NAME" = "pull_request" ]; then
+          echo "Pull Request: $PR_TITLE"
+          echo "PR Number: #$PR_NUMBER"
+        else
+          echo "Push to: $REF_NAME"
+        fi
+        echo "Commit: ${COMMIT_SHA:0:7}"
+        echo "Author: $ACTOR"
+        echo "Date: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        persist-credentials: false
+
+    - name: Secret scan (Gitleaks)
+      # Third-party action, pinned to the v2.3.9 commit (floating v2 tag target).
+      uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2.3.9
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Set up Node (when package.json present)
+      if: hashFiles('**/package.json') != ''
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    # Fails the job on high or critical advisories when a lockfile exists.
+    # Skipped until package-lock.json or npm-shrinkwrap.json is committed.
+    # There is no lockfile in the repo today, so this step does not run yet.
+    - name: npm audit (when lockfile present)
+      if: hashFiles('**/package-lock.json') != '' || hashFiles('**/npm-shrinkwrap.json') != ''
+      shell: bash
+      run: |
+        set -euo pipefail
+        found=0
+        while IFS= read -r -d '' lock; do
+          dir=$(dirname "$lock")
+          echo "npm audit in $dir"
+          if ! (cd "$dir" && npm audit --audit-level=high); then
+            found=1
+          fi
+        done < <(find . \
+          -path './.git' -prune -o \
+          -path '*/node_modules' -prune -o \
+          -path '*/.venv' -prune -o \
+          \( -name package-lock.json -o -name npm-shrinkwrap.json \) -print0)
+        if [ "$found" -ne 0 ]; then
+          echo "npm audit found high or critical vulnerabilities"
+          exit 1
+        fi
+
+    - name: Install uv
+      if: hashFiles('**/pyproject.toml') != '' || hashFiles('**/requirements.txt') != ''
+      # Third-party action, pinned to the current v4 tag (v4.2.0).
+      uses: astral-sh/setup-uv@38f3f104447c67c051c4a08e39b64a148898af3a # v4.2.0
+      with:
+        version: "0.12.23"
+
+    - name: Set up Python
+      if: hashFiles('**/pyproject.toml') != '' || hashFiles('**/requirements.txt') != ''
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: pip-audit (when Python deps present)
+      if: hashFiles('**/pyproject.toml') != '' || hashFiles('**/requirements.txt') != ''
+      continue-on-error: true
+      run: |
+        uv venv
+        source .venv/bin/activate
+        uv pip install pip-audit
+        if [ -f requirements.txt ]; then
+          uv pip install -r requirements.txt || true
+        fi
+        if [ -f pyproject.toml ]; then
+          uv pip install -e . || true
+        fi
+        pip-audit --format json --output pip-audit-report.json || true
+        if [ -f pip-audit-report.json ]; then
+          COUNT=$(jq '.vulnerabilities | length' pip-audit-report.json 2>/dev/null || echo 0)
+          echo "pip-audit vulnerabilities: $COUNT"
+        fi
+
+    - name: Bandit (when Python sources present)
+      if: hashFiles('**/*.py') != ''
+      continue-on-error: true
+      run: |
+        uv venv
+        source .venv/bin/activate
+        uv pip install bandit
+        bandit -r . -x ./.venv,./node_modules -f json -o bandit-report.json || true
+
+    - name: Upload security scan results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: security-scan-results
+        path: |
+          bandit-report.json
+          pip-audit-report.json
+        retention-days: 7
+        if-no-files-found: ignore

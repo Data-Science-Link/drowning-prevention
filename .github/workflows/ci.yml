@@ -1,0 +1,102 @@
+name: CI
+
+# Check name: frontend-smoke.
+# Meant to be required on the Main Branch Protections ruleset next to
+# security-audit. Do not add path filters. A skipped required check stays
+# "Waiting for status" forever, including on docs-only PRs.
+#
+# push is unfiltered so a feature-branch push still reports the check when the
+# pull_request webhook is dropped (draft / bot-opened PRs). Keep workflow_dispatch
+# so a missing run can be started from the Actions tab without a new commit.
+on:
+  push:
+  pull_request:
+    branches: [ main, master, develop ]
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frontend-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Pages placeholder present
+        run: |
+          test -f frontend/public/index.html || \
+            (echo "frontend/public/index.html missing" && exit 1)
+          grep -q "Guardian Goggles" frontend/public/index.html || \
+            (echo "index.html does not mention Guardian Goggles" && exit 1)
+          echo "Pages placeholder: OK"
+
+      - name: HTML wireframe present (when migrated)
+        run: |
+          if [ -d frontend/wireframe ]; then
+            test -f frontend/wireframe/index.html
+            test -f frontend/wireframe/app.js
+            test -f frontend/wireframe/styles.css
+            echo "Wireframe files OK"
+          else
+            echo "No frontend/wireframe yet — skipping structure check"
+          fi
+
+      - name: Set up Node
+        if: hashFiles('backend/mocks/package.json') != '' || hashFiles('frontend/**/package.json') != '' || hashFiles('package.json') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install and smoke mock backend
+        if: hashFiles('backend/mocks/package.json') != ''
+        working-directory: backend/mocks
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+          node --check server.js
+
+      - name: npm lint (when script exists)
+        if: hashFiles('package.json') != ''
+        run: |
+          if node -e "const p=require('./package.json'); process.exit(p.scripts&&p.scripts.lint?0:1)"; then
+            npm ci || npm install
+            npm run lint
+          else
+            echo "No root lint script — skip"
+          fi
+
+  python-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install uv
+        if: hashFiles('**/pyproject.toml') != ''
+        uses: astral-sh/setup-uv@38f3f104447c67c051c4a08e39b64a148898af3a # v4.2.0
+        with:
+          version: "0.12.23"
+
+      - name: Set up Python
+        if: hashFiles('**/pyproject.toml') != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        if: hashFiles('**/pyproject.toml') != ''
+        run: uv sync
+
+      - name: Run pytest
+        if: hashFiles('**/pyproject.toml') != ''
+        run: uv run pytest -v
+
+      - name: No pyproject.toml yet
+        if: hashFiles('**/pyproject.toml') == ''
+        run: echo "No pyproject.toml — skipping Python tests"
