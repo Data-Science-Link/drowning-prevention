@@ -70,7 +70,7 @@ These are the unresolved questions that block or inform upcoming decisions. When
 
 ### OQ-6 — WAVE US11715361 claim chart: when to commission?
 
-**Question:** When does Michael queue a paid FTO/claim-chart review of WAVE's patent against Guardian Goggles' fusion approach?
+**Question:** When does Michael queue a paid FTO/claim-chart review of WAVE's patent against this project's fusion approach?
 
 **Current decision (D-004):** Deferred until Stage 1 PoC go signal. Budget ~$8–25k (estimate). Do not commission before PoC confirms tech is viable.
 
@@ -82,7 +82,7 @@ These are the unresolved questions that block or inform upcoming decisions. When
 
 ### OQ-7 — Invent-around sufficient, or must we license/buy WAVE?
 
-**Question:** Can Guardian Goggles' dual-channel fusion + session-model approach operate outside WAVE's claim scope? Or will the claim chart show we need a license?
+**Question:** Can this project's dual-channel fusion + session-model approach operate outside WAVE's claim scope? Or will the claim chart show we need a license?
 
 **Current assumption:** Invent-around is default; we do not buy expired iSwimband patents. This assumption is unverified until counsel reviews.
 

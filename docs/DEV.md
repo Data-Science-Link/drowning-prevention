@@ -16,7 +16,7 @@ brew install uv
 ## Install dependencies
 
 ```bash
-cd guardian-goggles   # repo root
+cd drowning-prevention   # repo root
 uv sync
 ```
 
