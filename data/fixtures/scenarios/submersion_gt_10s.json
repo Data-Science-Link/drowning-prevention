@@ -1,0 +1,110 @@
+{
+  "scenarioId": "submersion_gt_10s",
+  "title": "Prolonged signal loss (>10s) \u2014 SubmersionSuspect",
+  "entitlement": {
+    "tier": "free",
+    "maxChildren": 1,
+    "familySharingEnabled": false,
+    "richHistoryEnabled": false
+  },
+  "householdRef": "household_free.json",
+  "expectedAlertType": "SubmersionSuspect",
+  "summary": "Wearable sensor signal absent >10s during Pool Session \u2192 loud SubmersionSuspect. Free core alert. Copy: possible prolonged submersion \u2014 check on your child now. Never claim drowning from BLE alone.",
+  "children": [
+    {
+      "childId": "ch_7a2f9c01",
+      "displayName": "Sam Rivera",
+      "sensorId": "sns_ble_1104",
+      "batteryPct": 79,
+      "lastSeenAt": "2026-09-21T16:50:00-05:00",
+      "connectionState": "submersion_suspect",
+      "sessionActive": true,
+      "deviceHealth": {
+        "batteryPct": 79,
+        "worn": true,
+        "signal": "lost",
+        "charging": false
+      }
+    }
+  ],
+  "alerts": [
+    {
+      "alertId": "al_sub_9f21",
+      "childId": "ch_7a2f9c01",
+      "type": "SubmersionSuspect",
+      "openedAt": "2026-09-21T16:50:12-05:00",
+      "resolvedAt": null,
+      "ackBy": null,
+      "scenarioId": "submersion_gt_10s",
+      "headline": "Possible prolonged submersion \u2014 check on your child now",
+      "body": "Your wearable sensor's signal has been absent for more than 10 seconds during a Pool Session. Go look at your child now. This is not a diagnosis \u2014 it is a prompt to check."
+    }
+  ],
+  "history": [
+    {
+      "entryId": "hx_sub_01",
+      "at": "2026-09-21T16:48:00-05:00",
+      "kind": "session",
+      "label": "Pool Session started",
+      "childId": "ch_7a2f9c01"
+    },
+    {
+      "entryId": "hx_sub_02",
+      "at": "2026-09-21T16:50:12-05:00",
+      "kind": "alert",
+      "label": "SubmersionSuspect opened",
+      "childId": "ch_7a2f9c01",
+      "alertType": "SubmersionSuspect"
+    }
+  ],
+  "timeline": [
+    {
+      "t": 0,
+      "kind": "session_start",
+      "childId": "ch_7a2f9c01",
+      "connectionState": "monitoring"
+    },
+    {
+      "t": 60,
+      "kind": "state_change",
+      "childId": "ch_7a2f9c01",
+      "connectionState": "monitoring",
+      "note": "Signal weakens"
+    },
+    {
+      "t": 62,
+      "kind": "blip_start",
+      "childId": "ch_7a2f9c01",
+      "note": "Signal lost"
+    },
+    {
+      "t": 72,
+      "kind": "alert_open",
+      "childId": "ch_7a2f9c01",
+      "connectionState": "submersion_suspect",
+      "note": "t>10s \u2192 SubmersionSuspect"
+    },
+    {
+      "t": 90,
+      "kind": "alert_ack",
+      "childId": "ch_7a2f9c01",
+      "note": "Parent: I'm looking"
+    },
+    {
+      "t": 110,
+      "kind": "alert_resolve",
+      "childId": "ch_7a2f9c01",
+      "connectionState": "monitoring",
+      "note": "Acknowledged / false alarm path available"
+    }
+  ],
+  "initialScreen": "alert_submersion",
+  "demoFocus": {
+    "showAlert": true,
+    "alertType": "SubmersionSuspect",
+    "sessionActive": true,
+    "connectionState": "submersion_suspect"
+  },
+  "demoDate": "2026-09-21",
+  "formFactorNote": "wearable_ble_sensor_hold"
+}
