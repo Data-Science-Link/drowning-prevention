@@ -48,7 +48,7 @@ jobs:
 
       - name: Set up Node
         if: hashFiles('backend/mocks/package.json') != '' || hashFiles('frontend/**/package.json') != '' || hashFiles('package.json') != ''
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 20
 
