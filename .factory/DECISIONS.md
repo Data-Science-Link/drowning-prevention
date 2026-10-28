@@ -115,3 +115,18 @@ Append-only. Newest at the bottom.
 - **Why:** Keeps the "update onto latest main right before merge" guarantee when the ruleset itself is bypassed.
 - **Alternatives:** Remove the review requirement; a separate bot account to approve.
 - **Revisit when:** PRs come from an account that can be approved, or a merge queue is adopted.
+
+### 2026-10-27 — Local DeepInfra fallback when Cursor usage runs out
+- **Decision:** Every ready-to-work issue carries a handoff block (goal, self-contained prompt, files to read on main, done checks, complexity S/M/L, Cursor model + DeepInfra fallback model). When Cursor usage runs out, Michael can run an issue in desktop Cursor with his own DeepInfra key ("do issue #N"); `MODEL_ROUTING.md` maps S/M/L/review to DeepInfra model IDs with prices checked 2026-10-27. High-risk code and specs always use the strongest tier. Agent review, CI and human gates are unchanged. The API key is never committed. This change was made directly by Grok Bot (git/gh), not a Cursor agent, because Cursor usage had run out.
+- **Decided by:** Michael Link, Link PR Factory room, 2026-10-27 11:53 PM ET: "please add this to the template and all other repos you have been helping with. Make sure to do the work fully as grok bot since cursor has no usage left." This is his cost OK for this outside-agent route.
+- **Why:** Cursor usage ran out and work stopped; the issue already is the handoff point, so a cheap open-weights route keeps it moving under the same gates.
+- **Alternatives:** Wait for the monthly reset; enable Cursor on-demand spend; cheaper models for high-risk work (rejected: a failed cheap attempt costs more).
+- **Revisit:** After the first local run, if Cursor's own-key support changes, or every 3 months to recheck DeepInfra picks and prices.
+
+### 2026-10-27 — Local fallback renamed to Local open-weights
+- **Decision:** Renamed the DeepInfra local fallback to Local open-weights (handoff line, MODEL_ROUTING section, skill renamed to local-open-weights-run.md). Handoff block now tells cloud agents to ignore it and local agents to use it. Michael's ask, 2026-10-27 11:17 PM CT. Repo note: there was no separate local-run skill file here (the steps lived in `FACTORY.md` → Local fallback run), so the steps moved into the new `skills/local-open-weights-run.md` and FACTORY.md now points to it. Made directly by Grok Bot (git/gh), not a Cursor agent, because Cursor usage had run out.
+- **Decided by:** Michael Link, 2026-10-27 11:17 PM CT.
+
+### 2026-10-27 — Qwen3-Coder is the default Local open-weights model
+- **Decision:** Qwen/Qwen3-Coder-480B-A35B-Instruct-Turbo is the default Local open-weights model for every tier and all agentic runs. DeepSeek-V4-Flash, DeepSeek-V4-Pro and Kimi-K2.6 stay listed but are marked Needs test: a known Cursor custom-key bug drops reasoning_content after tool calls, so thinking-mode DeepSeek V4 and Kimi fail with 400 (Cursor staff, Jul 2026: https://forum.cursor.com/t/the-deepseek-v4-pro-api-cannot-be-used-normally/159042); use one only after a short local test with thinking off passes. Added a Caching and context note (DeepInfra prefix caching is automatic; stable handoff prompt first, no mid-run switches, small issues, new chat at about 60-70% of context, verify cached_tokens). The handoff-block example now names Qwen3-Coder.
+- **Decided by:** Michael, 2026-10-27 11:36 PM CT: 'Yes, make Qwen3-Coder the default and mark the others as needing a test'.
