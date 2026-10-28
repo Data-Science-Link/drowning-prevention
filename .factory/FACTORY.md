@@ -50,6 +50,14 @@ After merge: watch the repo’s deploy / pages / CD workflows on the default bra
 
 Scheduled workflows (daily data jobs, nightly builds) can fail with no PR in flight. At the start of each work session, and after any merge that touches a scheduled job, check the latest scheduled runs on the default branch. If one failed, open (or reopen) a bug issue with the failing step and log excerpt, tell the human, and treat it as top priority. Also note run duration trends; a big jump is worth an issue.
 
+## Local fallback run
+
+When Cursor usage runs out, Michael can work a ready issue himself (`MODEL_ROUTING.md` → Local fallback has the setup and models):
+1. Open the repo in desktop Cursor and pick the DeepInfra model the issue's handoff block names.
+2. Say "do issue #N" (or paste the handoff prompt).
+3. The agent syncs to latest `main`, branches, and opens a PR linked to the issue; the PR's AI disclosure names the harness (local Cursor + DeepInfra) and model ID.
+4. Agent review (different model), CI, evidence and the human gates apply unchanged. The DeepInfra key stays in local Cursor settings only.
+
 ## Folder map
 
 ```
