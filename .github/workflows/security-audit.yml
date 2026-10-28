@@ -97,7 +97,7 @@ jobs:
     - name: Install uv
       if: hashFiles('**/pyproject.toml') != '' || hashFiles('**/requirements.txt') != ''
       # Third-party action, pinned to the current v4 tag (v4.2.0).
-      uses: astral-sh/setup-uv@38f3f104447c67c051c4a08e39b64a148898af3a # v4.2.0
+      uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
       with:
         version: "0.12.23"
 
