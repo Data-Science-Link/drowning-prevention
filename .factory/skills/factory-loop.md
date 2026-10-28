@@ -17,14 +17,16 @@ Also follow `liability-gates.md` on every change.
 - **High-risk** (license, secrets, auth, crypto, safety, workflows): treat as hard; human review required before merge.
 - Assign a **risk class** on the PR: `trivial` | `normal` | `high` (see merge authority).
 - **Pick the model** from `.factory/MODEL_ROUTING.md` using risk class + type of work; note it on the issue. Pin it on every cloud-agent launch (never Auto). Escalate only per the table.
-- **Handoff block** on every ready-to-work issue, so any agent or harness (including the local fallback, `FACTORY.md` → Local fallback run) can pick it up:
+- **Handoff block** on every ready-to-work issue, so any agent or harness (including a Local open-weights run, `local-open-weights-run.md`) can pick it up:
   ```
   Goal: <one sentence>
   Prompt: <self-contained prompt: repo, issue #N, what to change, constraints; sync latest main, branch, open a PR that references the issue, fill the PR template>
   Read first (on main): <e.g. .factory/FACTORY.md, .factory/skills/liability-gates.md, relevant docs and code paths>
   Done checks: <tests / CI / evidence that count as done>
   Complexity: S | M | L; Risk: trivial | normal | high
-  Model: Cursor `<model + effort>` · DeepInfra fallback `<model ID>` (MODEL_ROUTING.md)
+  Model: Cursor `<model + effort>` · Local open-weights `<provider model ID>` (MODEL_ROUTING.md)
+  Cloud agents: ignore the Local open-weights line and use the model you were launched with.
+  Local agents (Cursor desktop or another harness on Michael's machine using an open-weights provider such as DeepInfra): use the Local open-weights model named above and follow skills/local-open-weights-run.md.
   ```
 
 ## Build

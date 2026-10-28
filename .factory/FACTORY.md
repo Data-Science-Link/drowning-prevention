@@ -50,13 +50,9 @@ After merge: watch the repo’s deploy / pages / CD workflows on the default bra
 
 Scheduled workflows (daily data jobs, nightly builds) can fail with no PR in flight. At the start of each work session, and after any merge that touches a scheduled job, check the latest scheduled runs on the default branch. If one failed, open (or reopen) a bug issue with the failing step and log excerpt, tell the human, and treat it as top priority. Also note run duration trends; a big jump is worth an issue.
 
-## Local fallback run
+## Local open-weights run
 
-When Cursor usage runs out, Michael can work a ready issue himself (`MODEL_ROUTING.md` → Local fallback has the setup and models):
-1. Open the repo in desktop Cursor and pick the DeepInfra model the issue's handoff block names.
-2. Say "do issue #N" (or paste the handoff prompt).
-3. The agent syncs to latest `main`, branches, and opens a PR linked to the issue; the PR's AI disclosure names the harness (local Cursor + DeepInfra) and model ID.
-4. Agent review (different model), CI, evidence and the human gates apply unchanged. The DeepInfra key stays in local Cursor settings only.
+When Cursor usage runs out, Michael can work a ready issue himself on a Local open-weights model (`MODEL_ROUTING.md` → Local open-weights harness has the setup and models). Steps: `skills/local-open-weights-run.md`. Cloud agents ignore the Local open-weights line in the handoff block and use the model they were launched with.
 
 ## Folder map
 
@@ -70,6 +66,7 @@ When Cursor usage runs out, Michael can work a ready issue himself (`MODEL_ROUTI
     factory-loop.md               ← run the loop on an issue
     intake-from-coordinator.md    ← coordinator: chat → issue → hand off to worker
     liability-gates.md            ← hard stops (secrets, license, CI, over-claims, merge authority)
+    local-open-weights-run.md     ← local agents only: run an issue on a Local open-weights model
   sketches/                       ← copy these into the repo root / .github/
     CONTRIBUTING.md
     github/pull_request_template.md

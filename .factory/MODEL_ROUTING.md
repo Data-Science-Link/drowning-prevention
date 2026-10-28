@@ -29,12 +29,14 @@ Prices per million tokens (input / output): Composer 2.5 $0.50 / $2.50 · Grok 4
 ## When limits are hit
 
 - **Other Models used up** → keep working on Cursor Models only. Don't ask; don't enable on-demand.
-- **Cursor Models used up** → finish nothing new. Tell the human and ask: enable on-demand spending, wait for the monthly reset, or run ready issues himself on the local fallback below.
+- **Cursor Models used up** → finish nothing new. Tell the human and ask: enable on-demand spending, wait for the monthly reset, or run ready issues himself on the Local open-weights harness below.
 - **Never turn on on-demand spending yourself.**
 
-## Local fallback (desktop Cursor + DeepInfra)
+## Local open-weights harness (when Cursor usage runs out)
 
-When Cursor usage runs out, Michael can run a ready issue himself in **desktop Cursor** with his own DeepInfra key, using the model in the issue's handoff block. Steps: `FACTORY.md` → Local fallback run. Same loop, agent review, CI and human gates as cloud runs.
+When Cursor usage runs out, Michael can run a ready issue himself in **desktop Cursor** with his own DeepInfra key, using the model in the issue's handoff block. Steps: `skills/local-open-weights-run.md`. Same loop, agent review, CI and human gates as cloud runs.
+
+**Cloud vs local:** cloud agents ignore the Local open-weights line in an issue's handoff block and use the model they were launched with. Local agents (Cursor desktop or another harness on Michael's machine using an open-weights provider such as DeepInfra) use the Local open-weights model the handoff block names and follow `skills/local-open-weights-run.md`.
 
 **Setup (once).** Per [Cursor help: bring your own API key](https://cursor.com/help/models-and-usage/api-keys) (checked 2026-10-27): in Cursor Settings → Models, put the DeepInfra key in the OpenAI API key field and turn it on, turn on the OpenAI base-URL override with `https://api.deepinfra.com/v1/openai`, and add each model ID below as a custom model (name must match the ID exactly). While the override is on, Cursor's own OpenAI-family models also go to DeepInfra; turn it off to go back. Own keys work only in desktop Chat and Agent, not cloud agents or Auto. Menu names change; follow Cursor's current page if it differs.
 
